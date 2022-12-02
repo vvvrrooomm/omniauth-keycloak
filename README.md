@@ -33,11 +33,13 @@ Here's a quick example, adding the middleware to a Rails app in `config/initiali
 
 ```ruby
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :keycloak_openid, 'Example-Client', '19cca35f-dddd-473a-bdd5-03f00d61d884',
+  provider :keycloak_openid, 'Example-Client', '19cca35f-dddd-473a-bdd5-03f00d61d884', callback_url:'optional_callback'
     client_options: {site: 'https://example.keycloak-url.com', realm: 'example-realm'},
     name: 'keycloak'
 end
 ```
+Omniauth-keycloak tries to deduce the callback_url automatically, if callback:url is not set.
+
 This will allow a POST request to `auth/keycloak` since the name is set to keycloak
 
 Or using a proc setup with a custom options:

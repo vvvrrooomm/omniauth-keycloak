@@ -64,6 +64,10 @@ module OmniAuth
                 end
             end
 
+            def callback_url
+                options[:callback_url] || (full_host + script_name + callback_path)
+            end
+ 
             def auth_url_base
               return '/auth' unless options.client_options[:base_url]
               base_url = options.client_options[:base_url]
